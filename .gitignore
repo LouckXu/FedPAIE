@@ -1,0 +1,63 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+
+# Editors and operating systems
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Research data, features, weights, and generated outputs
+data/
+checkpoints/
+outputs/
+output/
+results/
+logs/
+runs/
+wandb/
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.npy
+*.npz
+*.h5
+*.hdf5
+
+# Notebooks and paper/build artifacts are intentionally outside this code release
+*.ipynb
+*.pdf
+*.aux
+*.log
+*.out
+*.toc
+
+# Local image collections
+*.jpg
+*.jpeg
+*.png
+*.tif
+*.tiff
+*.bmp
+*.webp
+
+# Curated documentation figures used by README.md
+!assets/
+!assets/*.webp

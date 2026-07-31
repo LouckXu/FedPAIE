@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fedpaie"
+version = "0.1.0"
+description = "Federated aesthetic preference learning for personalized image enhancement"
+readme = "README.md"
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE", "THIRD_PARTY_NOTICES.md"]
+requires-python = ">=3.10"
+dependencies = [
+  "torch>=2.2",
+  "torchvision>=0.17",
+  "numpy>=1.26",
+  "pandas>=2.0",
+  "Pillow>=10.0",
+  "scipy>=1.11",
+  "scikit-image>=0.22",
+  "colour-science>=0.4.4",
+  "kornia>=0.7",
+  "lpips>=0.1.4",
+  "optuna>=3.6",
+  "tqdm>=4.66",
+]
+
+[tool.setuptools.packages.find]
+include = ["datasets*", "evaluation*", "losses*", "models*", "training*", "utils*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
