@@ -372,21 +372,18 @@ RTX 5090 GPU, approximately 64 GB of system memory, CUDA 12.8, PyTorch 2.2.2, an
 Torchvision 0.17.2. The dependency files use compatible lower bounds rather than an
 environment lock, so record the resolved versions for new experiments.
 
-## Checkpoints and third-party status
+## Checkpoints
 
 No pretrained weights are included. Before redistributing any existing weights, confirm
 that you have permission from every relevant data and model rightsholder. This release
 uses native PyTorch `grid_sample` and does not include the upstream CLUT custom
-extension. See
-[`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md).
+extension.
 
 ## License
 
-The FedPAIE source code is licensed under the
-[Apache License 2.0](LICENSE). See [NOTICE](NOTICE) for copyright information and
-[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for third-party acknowledgments and
-dataset notices. The paper, datasets, pretrained weights, and other external artifacts
-retain their respective terms and are not relicensed by this code license.
+The FedPAIE source code is licensed under the [Apache License 2.0](LICENSE). The paper,
+datasets, pretrained weights, and other external artifacts retain their respective
+terms and are not relicensed by this code license.
 
 ## Citation
 
