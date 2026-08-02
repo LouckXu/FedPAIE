@@ -29,6 +29,16 @@ def _load_checkpoint(
 ) -> Any:
     """Load tensor-only checkpoints by default; opt in for trusted legacy modules."""
     path = Path(checkpoint_path)
+    if path.suffix.lower() == ".safetensors":
+        from safetensors import safe_open
+
+        # These public models are small, so CPU loading is the most portable path
+        # across CUDA, MPS, and CPU-only deployments. Model loading performs the copy.
+        with safe_open(str(path), framework="pt", device="cpu") as checkpoint:
+            metadata = checkpoint.metadata() or {}
+            state_dict = {key: checkpoint.get_tensor(key) for key in checkpoint.keys()}
+        return {**metadata, "model_state_dict": state_dict}
+
     try:
         return torch.load(path, map_location=device, weights_only=True)
     except pickle.UnpicklingError as error:

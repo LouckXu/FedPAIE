@@ -1,0 +1,25 @@
+FedPAIE Model Weight License
+
+The following model-weight files are licensed under the Creative Commons
+Attribution-NonCommercial 4.0 International license (CC BY-NC 4.0):
+
+- fedpaie_global_scorer_best.safetensors
+- fedpaie_generic_enhancer_prior.safetensors
+
+You may share and adapt these model weights for noncommercial purposes provided
+that you give appropriate attribution, include a link to the license, and
+indicate whether changes were made. The full license controls:
+
+https://creativecommons.org/licenses/by-nc/4.0/legalcode
+
+This license grant covers only the two model-weight files listed above. The
+FedPAIE repository source code remains licensed separately under Apache-2.0 as
+stated in the repository LICENSE file.
+
+No training or evaluation dataset is distributed in this bundle. Flickr-AES,
+MIT-Adobe FiveK, pretrained dependency weights, and all other third-party
+materials remain subject to their respective licenses and terms. This model
+license does not grant rights to those materials.
+
+The model weights are provided without warranties or conditions beyond those
+stated in CC BY-NC 4.0.

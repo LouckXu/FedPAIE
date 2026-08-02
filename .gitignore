@@ -35,6 +35,8 @@ wandb/
 *.pt
 *.pth
 *.ckpt
+*.safetensors
+!pretrained_models/*.safetensors
 *.onnx
 *.npy
 *.npz

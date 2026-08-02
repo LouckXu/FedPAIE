@@ -1,0 +1,43 @@
+{
+  "format_version": 2,
+  "paper": "https://arxiv.org/abs/2607.27659",
+  "checkpoint_format": "fedpaie_safetensors_v1",
+  "model_weight_license": "CC-BY-NC-4.0",
+  "redistribution_status": "released_under_cc_by_nc_4_0",
+  "models": [
+    {
+      "file": "fedpaie_global_scorer_best.safetensors",
+      "model_type": "FusionScorer",
+      "role": "global_aesthetic_scorer",
+      "parameters": 787202,
+      "bytes": 3150624,
+      "sha256": "32127722cc8578b94f31ddc5479522bbefe2895092e1aeb809ed917014df2d15",
+      "source_checkpoint_sha256": "7b6106b92464d7bf4e1fffae88aaf8d626da07a30bdf4c8659aac4e40c2567c6",
+      "source_tensor_exact_match": true,
+      "selection_round": 13,
+      "selection_macro_validation_srcc": 0.5622870247903683,
+      "selection_macro_validation_plcc": 0.577001842838821,
+      "selection_macro_validation_mse": 0.06091655246520846
+    },
+    {
+      "file": "fedpaie_generic_enhancer_prior.safetensors",
+      "model_type": "CLUTNet",
+      "role": "generic_enhancement_prior",
+      "architecture": "20+05+20",
+      "lut_dimension": 33,
+      "parameters": 292541,
+      "bytes": 1172556,
+      "sha256": "03dfaa3471332bc5877f69738e3756f372f5a49e9ee59b6d077c4667f4a025c3",
+      "source_checkpoint_sha256": "eaca2fd5d3cb6333fde6f681f8b56fe229f4a32133cc99c249e83d338dc7bf62",
+      "source_tensor_exact_match": true,
+      "source_output_max_abs_difference": 0.0,
+      "fivek_224x224_expert_c_images": 500,
+      "fivek_224x224_expert_c_psnr": 22.598405799023,
+      "fivek_224x224_expert_c_psnr_std": 3.76478712582272,
+      "fivek_224x224_expert_c_ssim": 0.903874529838562,
+      "fivek_224x224_expert_c_ssim_std": 0.05526444854727402,
+      "fivek_224x224_expert_c_lpips_alex": 0.08672203443944454,
+      "fivek_224x224_expert_c_lpips_alex_std": 0.03478056706396161
+    }
+  ]
+}

@@ -1,6 +1,8 @@
 from __future__ import annotations
 
+import pytest
 import torch
+from safetensors.torch import save_file
 from torch import nn
 from torch.utils.data import DataLoader
 
@@ -10,7 +12,7 @@ from models.clut_net import CLUTNet
 from models.scorer import FusionScorer, set_calibration_mask
 from training.adapt_enhancer import select_adaptation_config
 from training.common import evaluate_scorer
-from utils.checkpoints import clut_architecture, load_clut_model, save_checkpoint
+from utils.checkpoints import clut_architecture, load_clut_model, load_state_dict, save_checkpoint
 
 
 def test_paper_model_sizes() -> None:
@@ -33,6 +35,35 @@ def test_clut_architecture_round_trip(tmp_path) -> None:
     model = CLUTNet("03+02+04")
     checkpoint = tmp_path / "custom.pt"
     save_checkpoint(model, checkpoint, architecture=clut_architecture(model))
+    restored = load_clut_model(checkpoint, "cpu")
+    assert clut_architecture(restored) == "03+02+04"
+
+
+def test_safetensors_state_dict_loads_strictly(tmp_path) -> None:
+    source = nn.Linear(3, 2)
+    checkpoint = tmp_path / "linear.safetensors"
+    save_file(source.state_dict(), checkpoint)
+
+    restored = nn.Linear(3, 2)
+    load_state_dict(restored, checkpoint, "cpu")
+    for key, tensor in source.state_dict().items():
+        assert torch.equal(restored.state_dict()[key], tensor)
+
+    incomplete_checkpoint = tmp_path / "linear_incomplete.safetensors"
+    save_file({"weight": source.weight.detach()}, incomplete_checkpoint)
+    with pytest.raises(RuntimeError, match="Missing key"):
+        load_state_dict(nn.Linear(3, 2), incomplete_checkpoint, "cpu")
+
+
+def test_safetensors_clut_architecture_metadata(tmp_path) -> None:
+    model = CLUTNet("03+02+04")
+    checkpoint = tmp_path / "custom.safetensors"
+    save_file(
+        model.state_dict(),
+        checkpoint,
+        metadata={"architecture": clut_architecture(model)},
+    )
+
     restored = load_clut_model(checkpoint, "cpu")
     assert clut_architecture(restored) == "03+02+04"
 
